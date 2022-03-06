@@ -1,5 +1,6 @@
 import 'dart:ffi';
 
+import 'package:ev/Games.dart';
 import 'package:ev/Home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -148,7 +149,7 @@ class _SigninState extends State<Signin> {
                                     Navigator.pushReplacement(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => Home()));
+                                            builder: (context) => Games()));
                                   },
                                   child: Image.asset("assets/Login-button.png"),
                                 )

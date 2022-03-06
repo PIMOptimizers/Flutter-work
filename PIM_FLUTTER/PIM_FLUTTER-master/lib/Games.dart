@@ -41,10 +41,13 @@ class _GamesState extends State<Games> {
             child:Center(
               child: Column(
                 children: [
+                  SizedBox(
+                    height : 90
+                  ),
                   Row(
                     children: [
                       SizedBox(
-                          width: 110,
+                          width: 50,
                       ),
                       GestureDetector(
                         onTap: (){

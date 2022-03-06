@@ -146,10 +146,68 @@ class _SigninState extends State<Signin> {
                                 ),
                                 GestureDetector(
                                   onTap: () {
-                                    Navigator.pushReplacement(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => Games()));
+                                    if (keyForm.currentState!.validate()) {
+                                keyForm.currentState!.save();
+                                //URL
+                                String _baseUrl = "192.168.0.5:3000";
+                                //Headers
+                                Map<String, String> headers = {
+                                  "Content-Type":
+                                      "application/json; charset=UTF-8"
+                                };
+                                //Body
+                                Map<String, dynamic> userData = {
+                                  "email": email,
+                                  "password": password
+                                };
+                                //Exec
+                                http
+                                    .post(Uri.http(_baseUrl, '/users/login'),
+                                        headers: headers,
+                                        body: json.encode(userData))
+                                    .then((http.Response response) {
+                                  if (response.statusCode == 200) {
+                                    Map<String, dynamic> res =
+                                        json.decode(response.body);
+                                    var userId = res['_id'];
+                                    insertSharedPrefs(userId).then((value) =>
+                                        Navigator.pushReplacementNamed(
+                                            context, "/games"));
+                                  } else if (response.statusCode == 401) {
+                                    showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return AlertDialog(
+                                          title: Row(
+                                            children: [
+                                              Icon(Icons.info),
+                                              Text('Information'),
+                                            ],
+                                          ),
+                                          content: Text(
+                                              'Username ou Mot de passe incorrect!'),
+                                        );
+                                      },
+                                    );
+                                  } else {
+                                    showDialog(
+                                      context: context,
+                                      builder: (context) {
+                                        return AlertDialog(
+                                          title: Row(
+                                            children: [
+                                              Icon(Icons.info),
+                                              Text('Information'),
+                                            ],
+                                          ),
+                                          content: Text(
+                                              'Oups! Veuiller réessayer plus tard.'),
+                                        );
+                                      },
+                                    );
+                                  }
+                                });
+                              }
                                   },
                                   child: Image.asset("assets/Login-button.png"),
                                 )

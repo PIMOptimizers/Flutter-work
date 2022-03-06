@@ -1,3 +1,4 @@
+import 'package:ev/Games.dart';
 import 'package:ev/Home.dart';
 import 'package:ev/signin.dart';
 import 'package:ev/splashscreen.dart';
@@ -30,7 +31,7 @@ class _appState extends State<app> {
         return const Home();
       },
       "/games": (BuildContext context) {
-        return const Home();
+        return const Games();
       }
     });
   }

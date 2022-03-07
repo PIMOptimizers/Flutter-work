@@ -32,17 +32,20 @@ class _HomeState extends State<Home> {
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage("assets/HomePage.png"),
-                  fit: BoxFit.cover,
+                  fit: BoxFit.fill,
                 ),
               ),
               child: Center(
                   child: GestureDetector(
                 onTap: () {
-                  Navigator.pushNamed(context, "/home");
+                  Navigator.pushNamed(context, "/games");
                 },
                 child: Column(
                   children: [
-                    Image.asset('Play-button.png'),
+                    SizedBox(
+                      height: 150,
+                    ),
+                    Image.asset('assets/Play-button.png'),
                   ],
                 ),
               )))),

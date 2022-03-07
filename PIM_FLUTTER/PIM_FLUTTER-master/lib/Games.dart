@@ -47,7 +47,7 @@ class _GamesState extends State<Games> {
                   Row(
                     children: [
                       SizedBox(
-                          width: 50,
+                          width: 80,
                       ),
                       GestureDetector(
                         onTap: (){

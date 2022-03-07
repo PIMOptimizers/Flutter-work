@@ -14,8 +14,6 @@ class Games extends StatefulWidget {
   _GamesState createState() => _GamesState();
 }
 
-
-
 class _GamesState extends State<Games> {
   @override
   void initState() {

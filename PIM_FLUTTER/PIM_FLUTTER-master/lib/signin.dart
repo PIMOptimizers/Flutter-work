@@ -149,7 +149,7 @@ class _SigninState extends State<Signin> {
                                     Navigator.pushReplacement(
                                         context,
                                         MaterialPageRoute(
-                                            builder: (context) => Games()));
+                                            builder: (context) => Home()));
                                   },
                                   child: Image.asset("assets/Login-button.png"),
                                 )

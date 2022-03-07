@@ -2,14 +2,13 @@ import 'package:ev/Home.dart';
 import 'package:ev/signin.dart';
 import 'package:ev/splashscreen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(const app());
 }
-
-
 
 class app extends StatefulWidget {
   const app({Key? key}) : super(key: key);
@@ -19,24 +18,59 @@ class app extends StatefulWidget {
 }
 
 class _appState extends State<app> {
+   @override
+  void initState() {
+    super.initState();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeRight,
+      DeviceOrientation.landscapeLeft,
+    ]);
+  }
+  static const darkBlue = const Color(0xff0E2433);
+  late int _currentIndex;
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: 'G-Store ESPRIT', routes: {
-      "/": (BuildContext context) {
-        return const SpalshScreen();
-      },
-      "/signin": (BuildContext context) {
-        return const Signin();
-      },
-      "/home": (BuildContext context) {
-        return const Home();
-      },
-      "/games": (BuildContext context) {
-        return const Home();
-      }
-    });
+    return MaterialApp( 
+      home: Scaffold(
+        body:Center(
+          child: Container(
+            decoration:BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("assets/HomePage.png"),
+                fit: BoxFit.fill,
+              ),
+            ), 
+            child: Center(
+              child: Column(
+                children: [
+                  Row(children: [
+                    Container(child:
+                     Text('500',
+                      ),
+                      margin: EdgeInsets.fromLTRB(20, 10, 30, 10)
+                     ,),
+                     
+                ],),
+                Row(
+                       children: [
+                         Container(
+                          child: Image.asset("assets.spinner.png")
+                          ,)
+                       ],
+                     )
+                  ],
+                  )
+                  ,),
+          ),
+        ) ,
+      ),
+    );
   }
 }
+
+
+
+
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);

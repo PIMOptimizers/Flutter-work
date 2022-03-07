@@ -22,7 +22,7 @@ class _appState extends State<app> {
   Widget build(BuildContext context) {
     return MaterialApp(title: 'G-Store ESPRIT', routes: {
       "/": (BuildContext context) {
-        return const SpalshScreen();
+        return const Home();
       },
       "/signin": (BuildContext context) {
         return const Signin();

@@ -3,6 +3,7 @@ import 'package:ev/Games.dart';
 import 'package:ev/Phome.dart';
 import 'package:ev/Basket.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -14,30 +15,37 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  late int _currentIndex = 0;
-  final List<Widget> _interfaces = const [Phome(), Games(), Basket()];
+  @override
+  void initState() {
+    super.initState();
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.landscapeRight,
+      DeviceOrientation.landscapeLeft,
+    ]);
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      
-      body: _interfaces[_currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.backspace_outlined ), label: "TIC TAC TOE"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.call_missed_outgoing_rounded), label: "Dino Jump"),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.adjust_sharp), label: "Target practice")
-        ],
-        currentIndex: _currentIndex,
-        onTap: (int value) {
-          setState(() {
-            _currentIndex = value;
-          });
-        },
-      ),
+    return MaterialApp(
+      home: Scaffold(
+          body: Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("assets/HomePage.png"),
+                  fit: BoxFit.cover,
+                ),
+              ),
+              child: Center(
+                  child: GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, "/home");
+                },
+                child: Column(
+                  children: [
+                    Image.asset('Play-button.png'),
+                  ],
+                ),
+              )))),
     );
-    ;
   }
 }
